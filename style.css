@@ -248,3 +248,11 @@ border-box; } .cta-section
     color: #ffffff; background-color: 
     rgba(255, 255, 255, 0.1);
 }
+.back-link { display: inline-block; 
+    margin-bottom: 1rem; color: #2563eb; 
+    text-decoration: none; font-weight: 
+    600; font-size: 0.95rem;
+}
+.back-link:hover { text-decoration: 
+    underline;
+}
