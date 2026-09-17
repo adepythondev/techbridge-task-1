@@ -1,0 +1,166 @@
+<!DOCTYPE html> <html 
+lang="en"> <head>
+    <meta charset="UTF-8"> 
+    <meta name="viewport" 
+    content="width=device-width, 
+    initial-scale=1.0"> 
+    <title>TechBridge - Intern 
+    Registration</title> <link 
+    rel="stylesheet" 
+    href="style.css">
+</head> <body> <header 
+    class="navbar">
+        <a href="index.html" 
+        class="logo">Tech<span>Bridge</span></a> 
+        <nav>
+            <ul 
+            class="nav-links">
+                <li><a 
+                href="index.html">Home</a></li> 
+                <li><a 
+                href="programs.html">Programs</a></li> 
+                <li><a 
+                href="tasks.html">Tasks</a></li> 
+                <li><a 
+                href="register.html" 
+                class="active">Register</a></li>
+            </ul> </nav> 
+    </header> <main 
+    class="container">
+        <section 
+        class="form-header">
+            <h1>Internship 
+            Registration</h1> 
+            <p>Fill out the 
+            form below to 
+            register for the 
+            TechBridge 
+            practical 
+            internship 
+            program.</p>
+        </section> <section 
+        class="form-card">
+            <div 
+            id="success-message" 
+            class="success-box 
+            hidden" 
+            role="alert">
+                <h3>🎉 
+                Registration 
+                Successful!</h3> 
+                <p>Thank you 
+                for 
+                registering. 
+                Your details 
+                have been 
+                recorded.</p>
+            </div> <form 
+            id="registration-form" 
+            novalidate>
+                <div 
+                class="form-group">
+                    <label 
+                    for="fullname">Full 
+                    Name <span 
+                    class="required">*</span></label> 
+                    <input 
+                    type="text" 
+                    id="fullname" 
+                    name="fullname" 
+                    placeholder="e.g. 
+                    Samuel 
+                    Owokade" 
+                    required 
+                    aria-describedby="fullname-error"> 
+                    <span 
+                    class="error-msg" 
+                    id="fullname-error" 
+                    aria-live="polite"></span>
+                </div> <div 
+                class="form-group">
+                    <label 
+                    for="email">Email 
+                    Address 
+                    <span 
+                    class="required">*</span></label> 
+                    <input 
+                    type="email" 
+                    id="email" 
+                    name="email" 
+                    placeholder="e.g. 
+                    name@example.com" 
+                    required 
+                    aria-describedby="email-error"> 
+                    <small 
+                    class="input-hint">Must 
+                    match your 
+                    registered 
+                    TechBridge 
+                    email in 
+                    lowercase.</small> 
+                    <span 
+                    class="error-msg" 
+                    id="email-error" 
+                    aria-live="polite"></span>
+                </div> <div 
+                class="form-group">
+                    <label 
+                    for="track">Internship 
+                    Track <span 
+                    class="required">*</span></label> 
+                    <select 
+                    id="track" 
+                    name="track" 
+                    required 
+                    aria-describedby="track-error">
+                        <option 
+                        value="">-- 
+                        Select 
+                        Your 
+                        Track 
+                        --</option> 
+                        <option 
+                        value="web-dev">Web 
+                        Development</option> 
+                        <option 
+                        value="data-analytics">Data 
+                        Analytics</option>
+                    </select> 
+                    <span 
+                    class="error-msg" 
+                    id="track-error" 
+                    aria-live="polite"></span>
+                </div> <div 
+                class="form-group">
+                    <label 
+                    for="github">GitHub 
+                    Profile / 
+                    Portfolio 
+                    URL <span 
+                    class="required">*</span></label> 
+                    <input 
+                    type="url" 
+                    id="github" 
+                    name="github" 
+                    placeholder="https://github.com/yourusername" 
+                    required 
+                    aria-describedby="github-error"> 
+                    <span 
+                    class="error-msg" 
+                    id="github-error" 
+                    aria-live="polite"></span>
+                </div> <button 
+                type="submit" 
+                id="submit-btn" 
+                class="btn-primary 
+                form-submit-btn">Complete 
+                Registration</button>
+            </form> </section> 
+    </main> <footer>
+        <p>&copy; 2026 
+        TechBridge by Baselink 
+        Services Limited. All 
+        rights reserved.</p>
+    </footer> <script 
+    src="script.js"></script>
+</body> </html>
