@@ -1,0 +1,130 @@
+<!DOCTYPE html> <html lang="en"> <head> <meta 
+    charset="UTF-8"> <meta name="viewport" 
+    content="width=device-width, initial-scale=1.0"> 
+    <title>TechBridge - Task Submission System</title> 
+    <link rel="stylesheet" href="style.css">
+</head> <body> <header class="navbar"> <a 
+        href="index.html" 
+        class="logo">Tech<span>Bridge</span></a> <nav>
+            <ul class="nav-links"> <li><a 
+                href="index.html">Home</a></li> <li><a 
+                href="programs.html">Programs</a></li> 
+                <li><a href="tasks.html">Tasks</a></li> 
+                <li><a 
+                href="register.html">Register</a></li> 
+                <li><a href="submit.html" 
+                class="active">Submit</a></li>
+            </ul> </nav> </header> <main 
+    class="container">
+        <section class="form-header"> <h1>Task 
+            Submission System</h1> <p>Submit your 
+            completed internship tasks for review. 
+            Double-check your registered email address 
+            before submitting.</p>
+        </section> <section class="form-card"> <div 
+            id="submit-success-message" 
+            class="success-box hidden" role="alert">
+                <h3>🚀 Task Submitted Successfully!</h3> 
+                <p>Your submission has been recorded 
+                locally and queued for evaluation.</p> 
+                <button type="button" 
+                id="submit-another-btn" 
+                class="btn-primary" 
+                style="margin-top:1rem;">Submit Another 
+                Task</button>
+            </div> <form id="submission-form" 
+            novalidate>
+                <div class="form-group"> <label 
+                    for="sub-email">Registered Email 
+                    Address <span 
+                    class="required">*</span></label> 
+                    <input type="email" id="sub-email" 
+                    name="email" placeholder="e.g. 
+                    name@example.com" required 
+                    aria-describedby="sub-email-error"> 
+                    <small class="input-hint">Must match 
+                    the exact lowercase email address 
+                    used during registration.</small> 
+                    <span class="error-msg" 
+                    id="sub-email-error" 
+                    aria-live="polite"></span>
+                </div> <div class="form-group"> <label 
+                    for="sub-task">Select Completed Task 
+                    <span 
+                    class="required">*</span></label> 
+                    <select id="sub-task" name="task" 
+                    required 
+                    aria-describedby="sub-task-error">
+                        <option value="">-- Choose Task 
+                        --</option> <option value="Task 
+                        1">Task 1: Build the TechBridge 
+                        Homepage</option> <option 
+                        value="Task 2">Task 2: Build the 
+                        Programs Experience</option> 
+                        <option value="Task 3">Task 3: 
+                        Build the Internship Tasks 
+                        Experience</option> <option 
+                        value="Task 4">Task 4: Build an 
+                        Interactive Task 
+                        Tracker</option> <option 
+                        value="Task 5">Task 5: Build the 
+                        Intern Registration 
+                        Experience</option> <option 
+                        value="Task 6">Task 6: Build the 
+                        Task Submission System</option> 
+                        <option value="Task 7">Task 7: 
+                        Build the Intern 
+                        Dashboard</option> <option 
+                        value="Task 8">Task 8: Build the 
+                        Complete TechBridge 
+                        Platform</option>
+                    </select> <span class="error-msg" 
+                    id="sub-task-error" 
+                    aria-live="polite"></span>
+                </div> <div class="form-group"> <label 
+                    for="sub-github">GitHub Repository 
+                    URL <span 
+                    class="required">*</span></label> 
+                    <input type="url" id="sub-github" 
+                    name="github" 
+                    placeholder="https://github.com/username/repository" 
+                    required 
+                    aria-describedby="sub-github-error"> 
+                    <span class="error-msg" 
+                    id="sub-github-error" 
+                    aria-live="polite"></span>
+                </div> <div class="form-group"> <label 
+                    for="sub-netlify">Live Netlify 
+                    Deployment URL <span 
+                    class="required">*</span></label> 
+                    <input type="url" id="sub-netlify" 
+                    name="netlify" 
+                    placeholder="https://your-site.netlify.app" 
+                    required 
+                    aria-describedby="sub-netlify-error"> 
+                    <span class="error-msg" 
+                    id="sub-netlify-error" 
+                    aria-live="polite"></span>
+                </div> <div class="form-group"> <label 
+                    for="sub-notes">Developer 
+                    Documentation & Notes <span 
+                    class="required">*</span></label> 
+                    <textarea id="sub-notes" 
+                    name="notes" rows="4" 
+                    placeholder="Summarize your 
+                    technical implementation, key 
+                    features, and challenges 
+                    overcome..." required 
+                    aria-describedby="sub-notes-error"></textarea> 
+                    <span class="error-msg" 
+                    id="sub-notes-error" 
+                    aria-live="polite"></span>
+                </div> <button type="submit" 
+                class="btn-primary 
+                form-submit-btn">Submit Project 
+                Deliverable</button>
+            </form> </section> <!-- Submission History 
+        Log --> <section 
+        class="submission-history-container">
+            <h2>Your Local Submission History</h2>
+            <div id="submission-history-list" class="submission-hist

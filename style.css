@@ -156,3 +156,113 @@ select.input-error {
     1rem;
 }
 .su
+
+/* Task 6 Dashboard Styles */
+.welcome-banner {
+    background-color: #1e293b;
+    border: 1px solid #334155;
+    padding: 1.5rem;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.track-badge { color: #38bdf8; margin-top: 0.3rem; }
+.status-pill {
+    background-color: #16a34a;
+    color: #ffffff;
+    padding: 0.4rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 700;
+}
+
+.overview-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.stat-card {
+    background-color: #1e293b;
+    border: 1px solid #334155;
+    padding: 1.2rem;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.stat-card h3 { font-size: 0.9rem; color: #94a3b8; margin-bottom: 0.5rem; }
+.stat-card p { font-size: 1.8rem; font-weight: 800; color: #38bdf8; }
+
+.dashboard-section { margin-bottom: 3rem; }
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.dash-filter {
+    background-color: #1e293b;
+    color: #94a3b8;
+    border: 1px solid #334155;
+    padding: 0.35rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.dash-filter.active, .dash-filter:hover {
+    background-color: #2563eb;
+    color: #ffffff;
+    border-color: #2563eb;
+}
+
+.challenge-hub-card {
+    background-color: #0f1f18;
+    border: 1px solid #16a34a;
+    padding: 1.5rem;
+    border-radius: 10px;
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+
+.tech-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 1rem 0;
+}
+
+.tech-tab {
+    background-color: #1e293b;
+    color: #94a3b8;
+    border: 1px solid #334155;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.tech-tab.active {
+    background-color: #2563eb;
+    color: #ffffff;
+    border-color: #2563eb;
+}
+
+.tech-panel {
+    background-color: #1e293b;
+    border: 1px solid #334155;
+    padding: 1.5rem;
+    border-radius: 8px;
+}
+
+.tech-panel h3 { color: #38bdf8; margin-bottom: 0.5rem; }
