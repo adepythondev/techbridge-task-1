@@ -1,234 +1,187 @@
-document.addEventListener("DOMContentLoaded", () => {
-
-    // 8 Internship Tasks Data Structure
-    const tasksData = [
-        { id: 1, day: "Day 1", title: "Task 1: Build the TechBridge Homepage", category: "beginner", status: "completed", desc: "Construct a clean, responsive landing page using semantic HTML5 and CSS3." },
-        { id: 2, day: "Day 4", title: "Task 2: Build the Programs Experience", category: "beginner", status: "completed", desc: "Multi-page site featuring interactive program comparison cards." },
-        { id: 3, day: "Day 8", title: "Task 3: Build the Internship Tasks Experience", category: "beginner", status: "completed", desc: "Visual roadmap displaying all 8 internship milestones and timelines." },
-        { id: 4, day: "Day 11", title: "Task 4: Build an Interactive Task Tracker", category: "intermediate", status: "completed", desc: "Implement dynamic filtering and progress tracking using DOM manipulation." },
-        { id: 5, day: "Day 15", title: "Task 5: Build the Intern Registration Experience", category: "intermediate", status: "completed", desc: "User registration flow with client-side form validation and Regex checks." },
-        { id: 6, day: "Day 19", title: "Task 6: Build the TechBridge Intern Dashboard", category: "intermediate", status: "in-progress", desc: "Personal analytics dashboard rendering submission metrics and tech explorer." },
-        { id: 7, day: "Day 22", title: "Task 7: Build Advanced Web Applications", category: "advanced", status: "not-started", desc: "Engineer stateful React/Next.js frontend applications." },
-        { id: 8, day: "Day 26", title: "Task 8: Final Capstone Deployment", category: "advanced", status: "not-started", desc: "Complete end-to-end multi-page platform integration and deployment." }
-    ];
-
-    // Load saved statuses from localStorage
-    tasksData.forEach((task, index) => {
-        const savedStatus = localStorage.getItem(`dash_task_${task.id}`);
-        if (savedStatus) {
-            task.status = savedStatus;
-        }
-    });
-
-    const taskListContainer = document.getElementById("dynamic-task-list");
-    const filterButtons = document.querySelectorAll(".dash-filter");
-
-    function renderTasks(filter = "all") {
-        if (!taskListContainer) return;
-        taskListContainer.innerHTML = "";
-
-        const filtered = tasksData.filter(t => {
-            if (filter === "all") return true;
-            return t.status === filter;
-        });
-
-        if (filtered.length === 0) {
-            taskListContainer.innerHTML = `<p style="grid-column: 1/-1; text-align: center; color: #94a3b8;">No tasks found for this status.</p>`;
-            return;
-        }
-
-        filtered.forEach(task => {
-            const card = document.createElement("div");
-            card.className = `task-card ${task.status === "completed" ? "completed" : ""}`;
-            
-            let statusBadgeColor = "#94a3b8";
-            if (task.status === "completed") statusBadgeColor = "#4ade80";
-            if (task.status === "in-progress") statusBadgeColor = "#facc15";
-            if (task.status === "not-started") statusBadgeColor = "#f87171";
-
-            card.innerHTML = `
-                <div class="task-card-header">
-                    <span class="task-badge ${task.category}">${task.category}</span>
-                    <span style="font-size: 0.8rem; font-weight:700; color:${statusBadgeColor}; text-transform:uppercase;">${task.status.replace("-", " ")}</span>
-                </div>
-                <span class="task-day">${task.day}</span>
-                <h3>${task.title}</h3>
-                <p>${task.desc}</p>
-                <div style="margin-top:1rem; display:flex; gap:0.5rem;">
-                    <button class="btn-primary toggle-status-btn" data-id="${task.id}" style="padding:0.4rem 0.8rem; font-size:0.85rem;">
-                        ${task.status === "completed" ? "Mark Incomplete" : "Mark as Completed"}
-                    </button>
-                    <a href="tasks.html" class="filter-btn" style="text-decoration:none; display:inline-block; font-size:0.85rem;">View Task</a>
-                </div>
-            `;
-            taskListContainer.appendChild(card);
-        });
-
-        attachToggleListeners();
-        updateDashboardMetrics();
-    }
-
-    function attachToggleListeners() {
-        document.querySelectorAll(".toggle-status-btn").forEach(btn => {
-            btn.addEventListener("click", (e) => {
-                const taskId = parseInt(e.target.getAttribute("data-id"));
-                const targetTask = tasksData.find(t => t.id === taskId);
-                
-                if (targetTask) {
-                    targetTask.status = targetTask.status === "completed" ? "in-progress" : "completed";
-                    localStorage.setItem(`dash_task_${taskId}`, targetTask.status);
-                    
-                    const activeFilter = document.querySelector(".dash-filter.active")?.getAttribute("data-filter") || "all";
-                    renderTasks(activeFilter);
-                }
-            });
-        });
-    }
-
-    function updateDashboardMetrics() {
-        const total = tasksData.length;
-        const completed = tasksData.filter(t => t.status === "completed").length;
-        const remaining = total - completed;
-        const percentage = Math.round((completed / total) * 100);
-
-        document.getElementById("dash-total").textContent = total;
-        document.getElementById("dash-completed").textContent = completed;
-        document.getElementById("dash-remaining").textContent = remaining;
-        document.getElementById("dash-percentage").textContent = `${percentage}%`;
-        document.getElementById("dash-progress-fill").style.width = `${percentage}%`;
-    }
-
-    filterButtons.forEach(btn => {
-        btn.addEventListener("click", () => {
-            filterButtons.forEach(b => b.classList.remove("active"));
-            btn.classList.add("active");
-            renderTasks(btn.getAttribute("data-filter"));
-        });
-    });
-
-    /* --- INTERACTIVE TECHNOLOGY EXPLORER --- */
-    const techData = {
-        nextjs: {
-            title: "Next.js (React Framework)",
-            desc: "Next.js is a powerful React framework enabling server-side rendering (SSR), static site generation (SSG), and built-in API routes for production React apps.",
-            features: ["Server-Side Rendering (SSR)", "App Router Navigation", "Automatic Code Splitting", "SEO Optimization"]
-        },
-        vue: {
-            title: "Vue.js (Progressive JS Framework)",
-            desc: "Vue.js offers an approachable, performant, and versatile framework for building user interfaces with a clear template syntax and reactive state system.",
-            features: ["Reactivity System", "Single File Components (.vue)", "Virtual DOM", "Easy Integration"]
-        },
-        angular: {
-            title: "Angular (TypeScript Platform)",
-            desc: "Angular is Google's enterprise-grade platform featuring strong TypeScript support, dependency injection, and a full solution for large web applications.",
-            features: ["Two-Way Data Binding", "Dependency Injection", "RxJS Observables", "Comprehensive CLI"]
-        },
-        backend: {
-            title: "Backend Development Ecosystem",
-            desc: "Backend tech powers server architecture, database management, and API REST endpoints using technologies like Node.js, Express, Django, and PostgreSQL.",
-            features: ["RESTful API & GraphQL", "Database Management (PostgreSQL/MongoDB)", "Authentication & Security", "Server Deployment & Docker"]
-        }
-    };
-
-    const techTabs = document.querySelectorAll(".tech-tab");
-    const techPanel = document.getElementById("tech-content-panel");
-
-    function renderTechContent(key) {
-        const data = techData[key];
-        if (!data || !techPanel) return;
-
-        techPanel.innerHTML = `
-            <h3>${data.title}</h3>
-            <p>${data.desc}</p>
-            <ul style="margin-top:1rem; padding-left:1.2rem;">
-                ${data.features.map(f => `<li style="color:#38bdf8; margin-bottom:0.4rem;"><span style="color:#ffffff;">${f}</span></li>`).join("")}
-            </ul>
-        `;
-    }
-
-    techTabs.forEach(tab => {
-        tab.addEventListener("click", () => {
-            techTabs.forEach(t => t.classList.remove("active"));
-            tab.classList.add("active");
-            renderTechContent(tab.getAttribute("data-tech"));
-        });
-    });
-
-    // Initializations
-    renderTasks("all");
-    renderTechContent("nextjs");
-});
-// Task 8: Loading & Error 
-// State Logic
 document.addEventListener("DOMContentLoaded", 
 () => {
+    const API_URL = 
+    "https://techbridge-api-pok9.onrender.com/api/tasks"; 
+    const taskContainer = 
+    document.getElementById("dynamic-task-list"); 
     const loadingText = 
     document.getElementById("loadingText"); 
     const errorText = 
-    document.getElementById("errorText");
-    
-    if(loadingText) 
+    document.getElementById("errorText"); 
+    const searchInput = 
+    document.getElementById("searchInput"); 
+    const noResultsText = 
+    document.getElementById("noResultsText"); 
+    const filterButtons = 
+    document.querySelectorAll(".dash-filter"); 
+    if (loadingText) 
     loadingText.style.display = 
-    "block";
-    
-    fetch("https://techbridge-api-pok9.onrender.com/api/tasks") 
-        .then(response => {
-            if (!response.ok) 
+    "block"; if (errorText) 
+    errorText.style.display = 
+    "none"; fetch(API_URL)
+        .then(response => { if 
+            (!response.ok) 
             throw new 
             Error("Network 
-            error"); return 
+            error connecting to 
+            API"); return 
             response.json();
         })
-        .then(tasks => { 
-            if(loadingText) 
-            loadingText.style.display 
-            = "none";
-        })
-        .catch(error => { 
-            if(loadingText) 
+        .then(tasks => { if 
+            (loadingText) 
             loadingText.style.display 
             = "none"; 
-            if(errorText) 
-            errorText.style.display 
-            = "block"; 
+            renderTasks(tasks); 
+            updateProgressStats(tasks);
+        })
+        .catch(error => { 
             console.error("Fetch 
-            error:", error);
+            error:", error); if 
+            (loadingText) 
+            loadingText.style.display 
+            = "none"; if 
+            (errorText) 
+            errorText.style.display 
+            = "block";
         });
-});
-// Task 8: Real-time Search 
-// Filter
-document.getElementById("searchInput")?.addEventListener("keyup", 
-function() {
-    let searchQuery = 
-    this.value.toLowerCase(); 
-    let taskCards = 
-    document.querySelectorAll(".task-card"); 
-    let visibleCount = 0; 
-    taskCards.forEach(card => {
-        let textContent = 
-        card.innerText.toLowerCase(); 
-        if 
-        (textContent.includes(searchQuery)) 
-        {
-            card.style.display 
-            = "block"; 
-            visibleCount++;
-        } else {
-            card.style.display 
-            = "none";
+    function renderTasks(tasks) 
+    {
+        taskContainer.innerHTML 
+        = ""; 
+        tasks.forEach(task => {
+            const statusClass = 
+            task.status.toLowerCase().replace(" 
+            ", "-");
+            
+            const card = 
+            document.createElement("div"); 
+            card.className = 
+            "task-card"; 
+            card.setAttribute("data-status", 
+            statusClass);
+            
+            card.innerHTML = ` 
+                <h3 
+                class="task-title">${task.title}</h3> 
+                <p 
+                class="task-desc" 
+                style="margin-bottom: 
+                10px;">${task.description}</p> 
+                <span 
+                style="padding: 
+                5px 10px; 
+                border-radius: 
+                5px; font-size: 
+                0.8rem; 
+                background: 
+                #333; color: 
+                #fff;">
+                    Status: 
+                    <strong>${task.status}</strong>
+                </span> `; 
+            taskContainer.appendChild(card);
+        });
+    }
+    function 
+    updateProgressStats(tasks) 
+    {
+        const total = 
+        tasks.length; const 
+        completed = 
+        tasks.filter(t => 
+        t.status.toLowerCase() 
+        === 
+        "completed").length; 
+        const remaining = total 
+        - completed; const 
+        percentage = total === 
+        0 ? 0 : 
+        Math.round((completed / 
+        total) * 100); const 
+        dashTotal = 
+        document.getElementById("dash-total"); 
+        const dashCompleted = 
+        document.getElementById("dash-completed"); 
+        const dashRemaining = 
+        document.getElementById("dash-remaining"); 
+        const dashPercentage = 
+        document.getElementById("dash-percentage"); 
+        const dashProgressFill 
+        = 
+        document.getElementById("dash-progress-fill"); 
+        if (dashTotal) 
+        dashTotal.innerText = 
+        total; if 
+        (dashCompleted) 
+        dashCompleted.innerText 
+        = completed; if 
+        (dashRemaining) 
+        dashRemaining.innerText 
+        = remaining; if 
+        (dashPercentage) 
+        dashPercentage.innerText 
+        = percentage + "%"; if 
+        (dashProgressFill) 
+        dashProgressFill.style.width 
+        = percentage + "%";
+    }
+    searchInput?.addEventListener("keyup", 
+    function() {
+        let searchQuery = 
+        this.value.toLowerCase(); 
+        let taskCards = 
+        document.querySelectorAll(".task-card"); 
+        let visibleCount = 0; 
+        taskCards.forEach(card 
+        => {
+            let textContent = 
+            card.innerText.toLowerCase(); 
+            if 
+            (textContent.includes(searchQuery)) 
+            {
+                card.style.display 
+                = "block"; 
+                visibleCount++;
+            } else {
+                card.style.display 
+                = "none";
+            }
+        });
+        if (noResultsText) { 
+            noResultsText.style.display 
+            = (visibleCount === 
+            0 && searchQuery 
+            !== "") ? "block" : 
+            "none";
         }
     });
-    let noResultsEl = 
-    document.getElementById("noResultsText"); 
-    if (noResultsEl) {
-        if (visibleCount === 0 
-        && searchQuery !== "") 
-        {
-            noResultsEl.style.display 
-            = "block";
-        } else {
-            noResultsEl.style.display 
-            = "none";
-        }
-    }
+    filterButtons.forEach(btn 
+    => {
+        btn.addEventListener("click", 
+        (e) => {
+            filterButtons.forEach(b 
+            => 
+            b.classList.remove("active")); 
+            e.target.classList.add("active"); 
+            const filterValue = 
+            e.target.getAttribute("data-filter"); 
+            const taskCards = 
+            document.querySelectorAll(".task-card");
+            
+            taskCards.forEach(card 
+            => {
+                if (filterValue 
+                === "all" || 
+                card.getAttribute("data-status") 
+                === 
+                filterValue) {
+                    card.style.display 
+                    = "block";
+                } else {
+                    card.style.display 
+                    = "none";
+                }
+            });
+        });
+    });
 });
