@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", 
 () => {
     const API_URL = 
-    "https://techbridge-api-pok9.onrender.com/api/tasks"; 
+    "https://techbridge-api-1.onrender.com/api/tasks"; 
     const taskContainer = 
     document.getElementById("dynamic-task-list"); 
     const loadingText = 
