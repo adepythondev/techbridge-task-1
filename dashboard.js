@@ -158,3 +158,77 @@ document.addEventListener("DOMContentLoaded", () => {
     renderTasks("all");
     renderTechContent("nextjs");
 });
+// Task 8: Loading & Error 
+// State Logic
+document.addEventListener("DOMContentLoaded", 
+() => {
+    const loadingText = 
+    document.getElementById("loadingText"); 
+    const errorText = 
+    document.getElementById("errorText");
+    
+    if(loadingText) 
+    loadingText.style.display = 
+    "block";
+    
+    fetch("https://techbridge-api-pok9.onrender.com/api/tasks") 
+        .then(response => {
+            if (!response.ok) 
+            throw new 
+            Error("Network 
+            error"); return 
+            response.json();
+        })
+        .then(tasks => { 
+            if(loadingText) 
+            loadingText.style.display 
+            = "none";
+        })
+        .catch(error => { 
+            if(loadingText) 
+            loadingText.style.display 
+            = "none"; 
+            if(errorText) 
+            errorText.style.display 
+            = "block"; 
+            console.error("Fetch 
+            error:", error);
+        });
+});
+// Task 8: Real-time Search 
+// Filter
+document.getElementById("searchInput")?.addEventListener("keyup", 
+function() {
+    let searchQuery = 
+    this.value.toLowerCase(); 
+    let taskCards = 
+    document.querySelectorAll(".task-card"); 
+    let visibleCount = 0; 
+    taskCards.forEach(card => {
+        let textContent = 
+        card.innerText.toLowerCase(); 
+        if 
+        (textContent.includes(searchQuery)) 
+        {
+            card.style.display 
+            = "block"; 
+            visibleCount++;
+        } else {
+            card.style.display 
+            = "none";
+        }
+    });
+    let noResultsEl = 
+    document.getElementById("noResultsText"); 
+    if (noResultsEl) {
+        if (visibleCount === 0 
+        && searchQuery !== "") 
+        {
+            noResultsEl.style.display 
+            = "block";
+        } else {
+            noResultsEl.style.display 
+            = "none";
+        }
+    }
+});

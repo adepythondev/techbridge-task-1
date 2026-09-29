@@ -1,103 +1,228 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TechBridge - Intern Dashboard</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-
-    <header class="navbar">
-        <a href="index.html" class="logo">Tech<span>Bridge</span></a>
+<!DOCTYPE html> <html 
+lang="en"> <head>
+    <meta charset="UTF-8"> 
+    <meta name="viewport" 
+    content="width=device-width, 
+    initial-scale=1.0"> 
+    <title>TechBridge - Intern 
+    Dashboard</title> <link 
+    rel="stylesheet" 
+    href="style.css">
+</head> <body> <header 
+    class="navbar">
+        <a href="index.html" 
+        class="logo">Tech<span>Bridge</span></a> 
         <nav>
-            <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="programs.html">Programs</a></li>
-                <li><a href="tasks.html">Tasks</a></li>
-                <li><a href="register.html">Register</a></li>
-                <li><a href="dashboard.html" class="active">Dashboard</a></li>
-                <li><a href="submit.html">Submit</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <main class="container">
-        <!-- Welcome Banner -->
-        <section class="welcome-banner">
-            <div>
-                <h1>Welcome back, <span id="intern-name">Samuel Olaoluwa</span> 👋</h1>
-                <p class="track-badge">Track: <strong id="intern-track">Web Development Intern</strong></p>
-            </div>
-            <div class="status-pill">Status: <span id="intern-status">In Progress</span></div>
-        </section>
-
-        <!-- Internship Progress Overview -->
-        <section class="overview-grid">
-            <div class="stat-card">
-                <h3>Total Tasks</h3>
-                <p id="dash-total">8</p>
-            </div>
-            <div class="stat-card">
-                <h3>Completed</h3>
-                <p id="dash-completed">0</p>
-            </div>
-            <div class="stat-card">
-                <h3>Remaining</h3>
-                <p id="dash-remaining">8</p>
-            </div>
-            <div class="stat-card">
-                <h3>Overall Progress</h3>
-                <p id="dash-percentage">0%</p>
-                <div class="progress-bg" style="margin-top: 0.5rem;">
-                    <div id="dash-progress-fill" class="progress-fill"></div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Dynamic Task Tracker -->
-        <section class="dashboard-section">
-            <div class="section-header">
-                <h2>Internship Tasks Roadmap</h2>
-                <div class="filter-controls">
-                    <button class="dash-filter active" data-filter="all">All</button>
-                    <button class="dash-filter" data-filter="completed">Completed</button>
-                    <button class="dash-filter" data-filter="in-progress">In Progress</button>
-                    <button class="dash-filter" data-filter="not-started">Not Started</button>
-                </div>
-            </div>
-            <div id="dynamic-task-list" class="tasks-grid"></div>
-        </section>
-
-        <!-- Challenge Hub Callout -->
-        <section class="challenge-hub-card">
-            <h3>Ready for extra credit?</h3>
-            <p>Visit the Task 5 Challenge Hub to test your skills and earn bonus points!</p>
-            <a href="register.html" class="btn-primary" style="display:inline-block; margin-top:0.5rem;">Go to Challenge Hub</a>
-        </section>
-
-        <!-- Interactive Technology Explorer -->
-        <section class="dashboard-section tech-explorer">
-            <h2>Interactive Technology Explorer</h2>
-            <p>Explore high-demand modern frameworks and backend technologies used in production environments.</p>
+            <ul 
+            class="nav-links">
+                <li><a 
+                href="index.html">Home</a></li> 
+                <li><a 
+                href="dashboard.html" 
+                class="active">Dashboard</a></li> 
+                <li><a 
+                href="challenges.html">Challenge 
+                Hub</a></li>
+            </ul> </nav> 
+    </header> <main 
+    class="container">
+        <!-- Welcome Banner --> 
+        <section 
+        class="welcome-banner">
+            <div> <h1>Welcome 
+                back, <span 
+                id="intern-name">Samuel 
+                Olaoluwa</span> 
+                👋</h1> <p 
+                class="track-badge">Track: 
+                <strong 
+                id="intern-track">Web 
+                Development 
+                Intern</strong></p>
+            </div> <div 
+            class="status-pill">Status: 
+            <span 
+            id="intern-status">In 
+            Progress</span></div>
+        </section> <!-- 
+        Internship Progress 
+        Overview --> <section 
+        class="overview-grid">
+            <div 
+            class="stat-card">
+                <h3>Total 
+                Tasks</h3> <p 
+                id="dash-total">8</p>
+            </div> <div 
+            class="stat-card">
+                <h3>Completed</h3> 
+                <p 
+                id="dash-completed">0</p>
+            </div> <div 
+            class="stat-card">
+                <h3>Remaining</h3> 
+                <p 
+                id="dash-remaining">8</p>
+            </div> <div 
+            class="stat-card">
+                <h3>Overall 
+                Progress</h3> 
+                <p 
+                id="dash-percentage">0%</p> 
+                <div 
+                class="progress-bg" 
+                style="margin-top: 
+                0.5rem;">
+                    <div 
+                    id="dash-progress-fill" 
+                    class="progress-fill"></div>
+                </div> </div> 
+        </section> <!-- Dynamic 
+        Task Tracker --> 
+        <section 
+        class="dashboard-section">
+            <div 
+            class="section-header">
+                <h2>Internship 
+                Tasks 
+                Roadmap</h2> 
+                <div 
+                class="filter-controls">
+                    <button 
+                    class="dash-filter 
+                    active" 
+                    data-filter="all">All</button> 
+                    <button 
+                    class="dash-filter" 
+                    data-filter="completed">Completed</button> 
+                    <button 
+                    class="dash-filter" 
+                    data-filter="in-progress">In 
+                    Progress</button> 
+                    <button 
+                    class="dash-filter" 
+                    data-filter="not-started">Not 
+                    Started</button>
+                </div> </div>
             
-            <div class="tech-tabs">
-                <button class="tech-tab active" data-tech="nextjs">Next.js</button>
-                <button class="tech-tab" data-tech="vue">Vue.js</button>
-                <button class="tech-tab" data-tech="angular">Angular</button>
-                <button class="tech-tab" data-tech="backend">Backend Dev</button>
+            <!-- Task 8: Search 
+            Bar and Loading 
+            States --> <div 
+            style="margin-bottom: 
+            20px;">
+                <input 
+                type="text" 
+                id="searchInput" 
+                placeholder="Search 
+                tasks by 
+                keyword..." 
+                style="width: 
+                100%; padding: 
+                10px; 
+                border-radius: 
+                5px; border: 
+                1px solid #ccc; 
+                background: 
+                #1e1e2f; color: 
+                white;"> </div> 
+            <div 
+            id="statusMessage" 
+            style="text-align: 
+            center; 
+            margin-bottom: 
+            20px; font-weight: 
+            bold;">
+                <p 
+                id="loadingText" 
+                style="color: 
+                #f39c12;">⏳ 
+                Loading tasks 
+                from Render 
+                API...</p> <p 
+                id="errorText" 
+                style="color: 
+                #e74c3c; 
+                display: 
+                none;">❌ 
+                Unable to load 
+                tasks. Please 
+                try again 
+                later.</p> <p 
+                id="noResultsText" 
+                style="color: 
+                #3498db; 
+                display: 
+                none;">🔍 No 
+                matching tasks 
+                found.</p>
+            </div> <div 
+            id="dynamic-task-list" 
+            class="tasks-grid"></div>
+        </section> <!-- 
+        Challenge Hub Callout 
+        --> <section 
+        class="challenge-hub-card">
+            <h3>Ready for extra 
+            credit?</h3> 
+            <p>Visit the Task 5 
+            Challenge Hub to 
+            test your skills 
+            and earn bonus 
+            points!</p> <a 
+            href="challenges.html" 
+            class="btn-primary" 
+            style="display: 
+            inline-block; 
+            margin-top: 
+            0.5rem;">Go to 
+            Challenge Hub</a>
+        </section> <!-- 
+        Interactive Technology 
+        Explorer --> <section 
+        class="dashboard-section 
+        tech-explorer">
+            <h2>Interactive 
+            Technology 
+            Explorer</h2> 
+            <p>Explore 
+            high-demand modern 
+            frameworks and 
+            backend 
+            technologies used 
+            in production 
+            environments.</p>
+            
+            <div 
+            class="tech-tabs">
+                <button 
+                class="tech-tab 
+                active" 
+                data-tech="nextjs">Next.js</button> 
+                <button 
+                class="tech-tab" 
+                data-tech="vue">Vue.js</button> 
+                <button 
+                class="tech-tab" 
+                data-tech="angular">Angular</button> 
+                <button 
+                class="tech-tab" 
+                data-tech="backend">Backend 
+                Dev</button>
             </div>
-
-            <div id="tech-content-panel" class="tech-panel">
-                <!-- Dynamic Content Injected via JS -->
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <p>&copy; 2026 TechBridge by Baselink Services Limited. All rights reserved.</p>
-    </footer>
-
-    <script src="dashboard.js"></script>
-</body>
-</html>
+            
+            <div 
+            id="tech-content-panel" 
+            class="tech-panel">
+                <!-- Dynamic 
+                Content 
+                Injected via JS 
+                -->
+            </div> </section> 
+    </main> <footer>
+        <p>&copy; 2026 
+        TechBridge by Baselink 
+        Services Limited. All 
+        rights reserved.</p>
+    </footer> <script 
+    src="dashboard.js"></script>
+</body> </html>
