@@ -12,6 +12,10 @@ TASKS = [
     {"id": 5, "title": "Task 5", "description": "Challenge Hub", "status": "Pending"}
 ]
 
+@app.route('/')
+def home():
+    return "Welcome to the TechBridge Task 1 API! Go to /api/tasks to view your tasks."
+
 @app.route('/api/tasks', methods=['GET'])
 def get_tasks():
     return jsonify(TASKS)
