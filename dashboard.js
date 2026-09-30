@@ -1,117 +1,241 @@
-
-document.addEventListener("DOMContentLoaded", () => { const 
-    API_URL = 
-    "https://techbridge-api-1.onrender.com/api/tasks"; const 
-    taskContainer = 
-    document.getElementById("dynamic-task-list"); const 
-    loadingText = document.getElementById("loadingText"); 
-    const errorText = document.getElementById("errorText"); 
+document.addEventListener("DOMContentLoaded", 
+() => {
+    const API_URL = 
+    "https://techbridge-api-1.onrender.com/api/tasks"; 
+    const taskContainer 
+    = 
+    document.getElementById("dynamic-task-list"); 
+    const loadingText = 
+    document.getElementById("loadingText"); 
+    const errorText = 
+    document.getElementById("errorText"); 
     const searchInput = 
-    document.getElementById("searchInput"); const 
-    noResultsText = document.getElementById("noResultsText"); 
-    const filterButtons = 
-    document.querySelectorAll(".dash-filter"); if 
-    (loadingText) loadingText.style.display = "block"; if 
-    (errorText) errorText.style.display = "none"; 
+    document.getElementById("searchInput"); 
+    const noResultsText 
+    = 
+    document.getElementById("noResultsText"); 
+    const filterButtons 
+    = 
+    document.querySelectorAll(".dash-filter"); 
+    if (loadingText) 
+    loadingText.style.display 
+    = "block"; if 
+    (errorText) 
+    errorText.style.display 
+    = "none"; 
     fetch(API_URL)
-        .then(response => { if (!response.ok) throw new 
-            Error("Network error"); return response.json();
-        })
-        .then(tasks => { if (loadingText) 
-            loadingText.style.display = "none"; 
-            renderTasks(tasks); updateProgressStats(tasks);
-        })
-        .catch(error => { console.error("Fetch error:", 
-            error); if (loadingText) loadingText.style.display 
-            = "none"; if (errorText) errorText.style.display = 
-            "block";
-        });
-    function renderTasks(tasks) { if (!taskContainer) return; 
-        taskContainer.innerHTML = "";
-        
-        if (!Array.isArray(tasks)) return; tasks.forEach(task 
+        .then(response 
         => {
-            const rawStatus = task.status ? 
-            String(task.status) : "Not Started"; const 
-            statusClass = 
-            rawStatus.toLowerCase().replace(/\s+/g, "-");
+            if 
+            (!response.ok) 
+            throw new 
+            Error("Network 
+            error 
+            connecting 
+            to API"); 
+            return 
+            response.json();
+        })
+        .then(tasks => { 
+            if 
+            (loadingText) 
+            loadingText.style.display 
+            = "none"; 
+            renderTasks(tasks); 
+            updateProgressStats(tasks);
+        })
+        .catch(error => 
+        {
+            console.error("Fetch 
+            error:", 
+            error); if 
+            (loadingText) 
+            loadingText.style.display 
+            = "none"; if 
+            (errorText) 
+            errorText.style.display 
+            = "block";
+        });
+    function 
+    renderTasks(tasks) {
+        if 
+        (!taskContainer) 
+        return; 
+        taskContainer.innerHTML 
+        = ""; 
+        tasks.forEach(task 
+        => {
+            const 
+            statusClass 
+            = 
+            task.status 
+            ? 
+            task.status.toLowerCase().replace(" 
+            ", "-") : 
+            "not-started"; 
+            const card = 
+            document.createElement("div"); 
+            card.className 
+            = 
+            "task-card"; 
+            card.setAttribute("data-status", 
+            statusClass);
             
-            const card = document.createElement("div"); 
-            card.className = "task-card"; 
-            card.setAttribute("data-status", statusClass);
-            
-            card.innerHTML = ` <h3 
-                class="task-title">${task.title || "Untitled 
-                Task"}</h3> <p class="task-desc" 
+            card.innerHTML 
+            = `
+                <h3 
+                class="task-title">${task.title}</h3> 
+                <p 
+                class="task-desc" 
                 style="margin-bottom: 
-                10px;">${task.description || "No description 
-                provided."}</p> <span style="padding: 5px 
-                10px; border-radius: 5px; font-size: 0.8rem; 
-                background: #333; color: #fff;">
-                    Status: <strong>${rawStatus}</strong> 
-                </span>
-            `; taskContainer.appendChild(card);
+                10px;">${task.description}</p> 
+                <span 
+                style="padding: 
+                5px 
+                10px; 
+                border-radius: 
+                5px; 
+                font-size: 
+                0.8rem; 
+                background: 
+                #333; 
+                color: 
+                #fff;">
+                    Status: 
+                    <strong>${task.status}</strong>
+                </span> 
+            `; 
+            taskContainer.appendChild(card);
         });
     }
-    function updateProgressStats(tasks) { if 
-        (!Array.isArray(tasks)) return; const total = 
-        tasks.length; const completed = tasks.filter(t => 
-        t.status && String(t.status).toLowerCase() === 
-        "completed").length; const remaining = total - 
-        completed; const percentage = total === 0 ? 0 : 
-        Math.round((completed / total) * 100); const dashTotal 
-        = document.getElementById("dash-total"); const 
+    function 
+    updateProgressStats(tasks) 
+    {
+        const total = 
+        tasks.length; 
+        const completed 
+        = tasks.filter(t 
+        => t.status && 
+        t.status.toLowerCase() 
+        === 
+        "completed").length; 
+        const remaining 
+        = total - 
+        completed; const 
+        percentage = 
+        total === 0 ? 0 
+        : 
+        Math.round((completed 
+        / total) * 100); 
+        const dashTotal 
+        = 
+        document.getElementById("dash-total"); 
+        const 
         dashCompleted = 
-        document.getElementById("dash-completed"); const 
+        document.getElementById("dash-completed"); 
+        const 
         dashRemaining = 
-        document.getElementById("dash-remaining"); const 
+        document.getElementById("dash-remaining"); 
+        const 
         dashPercentage = 
-        document.getElementById("dash-percentage"); const 
-        dashProgressFill = 
-        document.getElementById("dash-progress-fill"); if 
-        (dashTotal) dashTotal.innerText = total; if 
-        (dashCompleted) dashCompleted.innerText = completed; 
-        if (dashRemaining) dashRemaining.innerText = 
-        remaining; if (dashPercentage) 
-        dashPercentage.innerText = percentage + "%"; if 
-        (dashProgressFill) dashProgressFill.style.width = 
-        percentage + "%";
+        document.getElementById("dash-percentage"); 
+        const 
+        dashProgressFill 
+        = 
+        document.getElementById("dash-progress-fill"); 
+        if (dashTotal) 
+        dashTotal.innerText 
+        = total; if 
+        (dashCompleted) 
+        dashCompleted.innerText 
+        = completed; if 
+        (dashRemaining) 
+        dashRemaining.innerText 
+        = remaining; if 
+        (dashPercentage) 
+        dashPercentage.innerText 
+        = percentage + 
+        "%"; if 
+        (dashProgressFill) 
+        dashProgressFill.style.width 
+        = percentage + 
+        "%";
     }
-    searchInput?.addEventListener("keyup", function() { let 
-        searchQuery = this.value.toLowerCase(); let taskCards 
-        = document.querySelectorAll(".task-card"); let 
-        visibleCount = 0; taskCards.forEach(card => {
-            let textContent = card.innerText.toLowerCase(); if 
-            (textContent.includes(searchQuery)) {
-                card.style.display = "block"; visibleCount++;
+    searchInput?.addEventListener("keyup", 
+    function() {
+        let searchQuery 
+        = 
+        this.value.toLowerCase(); 
+        let taskCards = 
+        document.querySelectorAll(".task-card"); 
+        let visibleCount 
+        = 0; 
+        taskCards.forEach(card 
+        => {
+            let 
+            textContent 
+            = 
+            card.innerText.toLowerCase(); 
+            if 
+            (textContent.includes(searchQuery)) 
+            {
+                card.style.display 
+                = 
+                "block"; 
+                visibleCount++;
             } else {
-                card.style.display = "none";
+                card.style.display 
+                = 
+                "none";
             }
         });
-        if (noResultsText) { noResultsText.style.display = 
-            (visibleCount === 0 && searchQuery !== "") ? 
-            "block" : "none";
+        if 
+        (noResultsText) 
+        {
+            noResultsText.style.display 
+            = 
+            (visibleCount 
+            === 0 && 
+            searchQuery 
+            !== "") ? 
+            "block" : 
+            "none";
         }
     });
-    filterButtons.forEach(btn => { 
-        btn.addEventListener("click", (e) => {
-            filterButtons.forEach(b => 
+    filterButtons.forEach(btn 
+    => {
+        btn.addEventListener("click", 
+        (e) => {
+            filterButtons.forEach(b 
+            => 
             b.classList.remove("active")); 
-            e.target.classList.add("active"); const 
-            filterValue = 
-            e.target.getAttribute("data-filter"); const 
+            e.target.classList.add("active"); 
+            const 
+            filterValue 
+            = 
+            e.target.getAttribute("data-filter"); 
+            const 
             taskCards = 
             document.querySelectorAll(".task-card"); 
-            taskCards.forEach(card => {
-                if (filterValue === "all" || 
-                card.getAttribute("data-status") === 
-                filterValue) {
-                    card.style.display = "block";
+            taskCards.forEach(card 
+            => {
+                if 
+                (filterValue 
+                === 
+                "all" || 
+                card.getAttribute("data-status") 
+                === 
+                filterValue) 
+                {
+                    card.style.display 
+                    = 
+                    "block";
                 } else {
-                    card.style.display = "none";
+                    card.style.display 
+                    = 
+                    "none";
                 }
             });
         });
     });
 });
-
