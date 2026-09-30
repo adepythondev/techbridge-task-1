@@ -13,8 +13,12 @@ async function loadTasks() {
 }
 
 function displayTasks(tasks) {
-    const container = document.getElementById("task-container");
-    if (!container) return;
+    // Checking for common container IDs used in your HTML templates
+    const container = document.getElementById("task-container") || document.querySelector(".task-container") || document.getElementById("tasks-list");
+    if (!container) {
+        console.warn("Task container element not found in DOM");
+        return;
+    }
     
     container.innerHTML = "";
     tasks.forEach(task => {
@@ -23,7 +27,7 @@ function displayTasks(tasks) {
         div.innerHTML = `
             <h3>${task.title}</h3>
             <p>${task.description}</p>
-            <span class="status">${task.status}</span>
+            <span class="status ${task.status ? task.status.toLowerCase().replace(/\s+/g, '-') : ''}">${task.status}</span>
         `;
         container.appendChild(div);
     });
