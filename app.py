@@ -14,9 +14,10 @@ TASKS = [ {"id": 1,
     "description": 
     "HTML/CSS setup", 
     "status": 
-    "Completed"}, {"id": 
+    "Completed"},{"id": 
     2, "title": "Task 
     2", "description": 
+    "Responsive layout",
     "Responsive layout", 
     "status": 
     "Completed"}, {"id": 
